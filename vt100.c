@@ -19,6 +19,7 @@
 #include	<stdlib.h>
 #include	<string.h>
 #include	<ctype.h>
+#include	<unistd.h>
 #include	"vt100.h"
 #include	"video.h"
 #include	"terminal.h"

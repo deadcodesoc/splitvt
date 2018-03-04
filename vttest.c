@@ -16,6 +16,7 @@
 #include	<stdio.h>
 #include	<fcntl.h>
 #include        <termios.h> 
+#include	<unistd.h>
 #ifdef HAVE_TERMIO_H 
 #include        <termio.h> 
 #else 

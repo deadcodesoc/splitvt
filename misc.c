@@ -8,6 +8,8 @@
 #include	<string.h>
 #include	<signal.h>
 #include	<termios.h>
+#include	<utime.h>
+#include	<unistd.h>
 
 
 #ifdef HAVE_TERMIO_H
@@ -416,7 +418,7 @@ void dropctty()
 	setsid();		/* The POSIX solution is simple. :) */
 #else
 #ifdef TIOCNOTTY  /* We want to get HP-UX, BSD, and Sun/OS here */
-	setpgrp(0, 0);
+	setpgid(0, 0);
 
 #ifndef CIBAUD   /* Sun/OS doesn't need to do TIOCNOTTY.  */
 	if ( (fd=open("/dev/tty", O_RDWR)) > (-1) ) 

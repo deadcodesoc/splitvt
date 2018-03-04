@@ -7,6 +7,8 @@
 #include	<utmp.h>
 #include	<stdio.h>
 #include	<string.h>
+#include	<time.h>
+#include	<unistd.h>
 
 #ifdef DEBUG_UTMP
 #undef  UTMP_FILE
@@ -33,7 +35,7 @@ int remove_me()
 	if ( ! isatty(0) )
 		return(-1);
 
-	tty=(char *)ttyname(0);
+	tty=ttyname(0);
 	if ( tty == NULL || strlen(tty)+1 > sizeof(saved_tty) )
 		return(-1);
 

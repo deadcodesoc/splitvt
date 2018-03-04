@@ -3,6 +3,8 @@
 
 #include	<stdio.h>
 #include	<pwd.h>
+#include	<string.h>
+#include	<unistd.h>
 #include	"vt100.h"
 
 #define UNLOCKED	0

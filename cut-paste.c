@@ -3,6 +3,7 @@
 
 #include	<stdio.h>
 #include	<string.h>
+#include	<unistd.h>
 #include	"vt100.h"
 #include	"video.h"
 

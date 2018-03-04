@@ -4,15 +4,15 @@
 #include	<signal.h>
 #include	<stdlib.h>
 #include	<string.h>
+#include	<unistd.h>
 
-/*#define DEBUG		/* Provides extra debugging info */
+/* Provides extra debugging info */
+/*#define DEBUG*/
 
 #define VERBOSE_PRINT(X)	if ( verbose ) printf(X)
 
-#define F_OK	0
-#define X_OK	1
-#define W_OK	2
-#define R_OK	4
+int exists(char *, char *);
+int grep(char *, char *, char *);
 
 int exists(dir, file)
 char *dir;
@@ -29,7 +29,7 @@ char *file;
 }
 
 
-main(argc, argv)
+int main(argc, argv)
 int argc;
 char *argv[];
 {
