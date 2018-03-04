@@ -166,8 +166,6 @@ char *args[];
 static int safe_chdir(directory)
 char *directory;
 {
-	extern int errno;
-
 	char *subdir=NULL;
 	struct stat sb;
 	int nslashes=0, chdir_ret;

@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
 #endif
 
 /* I/O streams default to stdin and stdout. */
-static FILE *xt_input, *xt_output;
+static FILE *xt_input = NULL, *xt_output = NULL;
 static int have_xterm=0;
 static int set_title=0;
 static char *old_title=NULL;
@@ -120,6 +120,9 @@ static char *get_xtitle()
 static void set_xtitle(titlebar)
 char *titlebar;
 {
+	if (xt_output == NULL)
+		xt_output = stdout;
+
 	fprintf(xt_output, "\033]0;%s\07", titlebar);
 	fflush(xt_output);
 }
@@ -167,6 +170,11 @@ struct event *X_event;
 	extern struct physical physical;
 	window *thiswin;
 #endif
+
+	if (xt_input == NULL)
+		xt_input = stdin;
+	if (xt_output == NULL)
+		xt_output = stdout;
 
 	X_event->happening=0;
 
@@ -279,6 +287,9 @@ struct event *X_event;
 
 void event_quit()
 {
+	if (xt_output == NULL)
+		xt_output = stdout;
+
 	if ( have_xterm ) {
 #ifdef REPORT_SELECTION
 		fprintf(xt_output, "\033[?1001l");

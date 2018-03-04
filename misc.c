@@ -7,6 +7,7 @@
 #include	<stdlib.h>
 #include	<string.h>
 #include	<signal.h>
+#include	<termios.h>
 
 
 #ifdef HAVE_TERMIO_H
@@ -108,8 +109,17 @@ int win;		/* 0 for upper, 1 for lower */
 		/* "touch" the tty so 'w' reports proper idle times */
 		(void) utime(get_ttyname(), NULL);
 
+		/* Set our gid to our real gid if necessary */
+		if (setgid(getgid()) != 0) {
+			perror("setgid");
+			exit(EXIT_FAILURE);
+		}
+
 		/* Set our uid to our real uid if necessary */
-		(void) setuid(getuid());
+		if (setuid(getuid()) != 0) {
+			perror("setgid");
+			exit(EXIT_FAILURE);
+		}
 			
 		/* Run the requested program, with possible leading dash. */
 		execvp(((*argv[0] == '-') ? argv[0]+1 : argv[0]), argv);
@@ -876,8 +886,17 @@ char *type;
 			}
 			close(pipe_fds[0]); close(pipe_fds[1]); 
 
+			/* Set our gid to our real gid if necessary */
+			if (setgid(getgid()) != 0) {
+				perror("setgid");
+				exit(EXIT_FAILURE);
+			}
+
 			/* Set our uid to our real uid if necessary */
-			(void) setuid(getuid());
+			if (setuid(getuid()) != 0) {
+				perror("setuid");
+				exit(EXIT_FAILURE);
+			}
 			
 			/* Run the requested program */
 			argv[0]="/bin/sh";

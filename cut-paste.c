@@ -312,7 +312,7 @@ int len;
 			default:	break;
 		}
 	}
-	return;	/* Hopefully, we never reach here */
+	return NULL;	/* Hopefully, we never reach here */
 }
 
 

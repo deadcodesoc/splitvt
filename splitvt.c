@@ -111,7 +111,7 @@ main(argc, argv)
 int argc;
 char *argv[];
 {
-	extern int errno, optind;
+	extern int optind;
 	extern char *optarg;
 
 	int i, len, maxfds, numready;
